@@ -13,7 +13,7 @@
 
 import { execSync } from "node:child_process";
 
-const DENO_SF = `deno run --allow-sys --allow-net --allow-env --allow-read --allow-write --allow-run ./node_modules/.deno/@salesforce+cli@2.61.8/node_modules/@salesforce/cli/bin/run.js`;
+const DENO_SF = `deno run --allow-sys --allow-env --allow-read --allow-write --allow-run ./node_modules/.deno/@salesforce+cli@2.61.8/node_modules/@salesforce/cli/bin/run.js`;
 
 export type ScannerFinding = {
   fileName: string;
