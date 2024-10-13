@@ -18,4 +18,4 @@ deno --version
 
 tree src
 
-deno --allow-env --allow-read --allow-run src/index.ts
+deno --allow-env --allow-read --allow-run ${GITHUB_ACTION_PATH}src/index.ts
