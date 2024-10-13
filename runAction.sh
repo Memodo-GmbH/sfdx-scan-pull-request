@@ -12,6 +12,6 @@ else
   echo "Deno 2.0.0 is already installed."
 fi
 
-deno --version
-tree src
+export PATH="$PATH:/home/runner/.deno/bin" 
+
 deno --allow-env --allow-read --allow-run src/index.ts
