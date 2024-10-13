@@ -28,5 +28,7 @@ inputs:
     description: "Set `true` to delete comments once the issue has been resolved"
     default: "false"
 runs:
-  using: "node16"
-  main: "dist/index.js"
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/runAction.sh
+      shell: bash
