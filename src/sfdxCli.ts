@@ -13,6 +13,8 @@
 
 import { execSync } from "node:child_process";
 
+const DENO_SF = `deno run --allow-sys --allow-net --allow-env --allow-read --allow-write --allow-run ./node_modules/.deno/@salesforce+cli@2.61.8/node_modules/@salesforce/cli/bin/run.js`;
+
 export type ScannerFinding = {
   fileName: string;
   engine: string;
@@ -51,7 +53,7 @@ type SfdxCommandResult<T> = {
 const cli = async <T>(commandName: string, cliArgs: string[] = []) => {
   let result = null as T;
   try {
-    const cliCommand = `npx sfdx ${commandName} ${cliArgs.join(" ")}`;
+    const cliCommand = `${DENO_SF} ${commandName} ${cliArgs.join(" ")}`;
     console.log(cliCommand);
     result = (
       JSON.parse(execSync(cliCommand).toString()) as SfdxCommandResult<T>
@@ -72,16 +74,16 @@ export async function scanFiles(scannerFlags: ScannerFlags) {
     )
     .reduce((acc, [one, two]) => (one && two ? [...acc, one, two] : acc), []);
 
-  return cli<ScannerFinding[] | string>("scanner:run", [
+  return cli<ScannerFinding[] | string>("scanner run", [
     ...scannerCliArgs,
     "--json",
   ]);
 }
 
 export async function registerRule(path: string, language: string) {
-  return cli<ScannerFinding[] | string>("scanner:rule:add", [
-    `--path="${path}"`,
-    `--language="${language}"`,
+  return cli<ScannerFinding[] | string>("scanner rule add", [
+    `--path "${path}"`,
+    `--language "${language}"`,
     "--json",
   ]);
 }

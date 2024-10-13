@@ -14,8 +14,6 @@ fi
 
 export PATH="$PATH:/home/runner/.deno/bin" 
 
-cd ${GITHUB_ACTION_PATH}
-
 deno install
 
-deno --allow-env --allow-read --allow-run src/index.ts
+deno --allow-env --allow-read --allow-run run ${GITHUB_ACTION_PATH}/src/index.ts
