@@ -12,5 +12,6 @@ else
   echo "Deno 2.0.0 is already installed."
 fi
 
+deno --version
 tree src
 deno --allow-env --allow-read --allow-run src/index.ts
