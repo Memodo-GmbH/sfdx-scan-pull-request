@@ -11,10 +11,10 @@
    limitations under the License.
  */
 
-import { PluginInputs } from "../common";
-import { ScannerViolation } from "../sfdxCli";
-import { Context } from "@actions/github/lib/context";
-import { setFailed } from "@actions/core";
+import { PluginInputs } from "../common.ts";
+import { ScannerViolation } from "../sfdxCli.ts";
+import { Context } from "actionsGithub/lib/context";
+import { setFailed } from "actionsCore";
 
 export type GithubCheckRun = {
   name: string;

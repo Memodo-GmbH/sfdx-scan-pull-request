@@ -11,16 +11,16 @@
    limitations under the License.
  */
 
-import { getGithubFilePath, getScannerViolationType } from "../common";
+import { getGithubFilePath, getScannerViolationType } from "../common.ts";
 
-import { Octokit } from "@octokit/action";
-import { context } from "@actions/github";
+import { Octokit } from "octokit";
+import { context } from "actionsGithub";
 import {
   BaseReporter,
   GithubComment,
   GithubExistingComment,
-} from "./reporter.types";
-import { ScannerViolation } from "../sfdxCli";
+} from "./reporter.types.ts";
+import { ScannerViolation } from "../sfdxCli.ts";
 
 const ERROR = "Error";
 

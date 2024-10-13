@@ -11,15 +11,15 @@
    limitations under the License.
  */
 
-import { getScannerViolationType } from "../common";
-import { Octokit } from "@octokit/action";
-import { context } from "@actions/github";
+import { getScannerViolationType } from "../common.ts";
+import { Octokit } from "octokit";
+import { context } from "actionsGithub";
 import {
   BaseReporter,
   GithubAnnotation,
   GithubCheckRun,
-} from "./reporter.types";
-import { ScannerViolation } from "../sfdxCli";
+} from "./reporter.types.ts";
+import { ScannerViolation } from "../sfdxCli.ts";
 
 export const ERROR = "Error";
 export const RIGHT = "RIGHT";

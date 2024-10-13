@@ -12,9 +12,9 @@
  */
 
 import parse from "parse-diff";
-import fs from "fs";
-import { context } from "@actions/github";
-import { execSync } from "child_process";
+import fs from "node:fs";
+import { context } from "actionsGithub";
+import { execSync } from "node:child_process";
 
 const DIFF_OUTPUT = "diffBetweenCurrentAndParentBranch.txt";
 

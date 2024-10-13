@@ -11,10 +11,10 @@
    limitations under the License.
  */
 
-import { getInput, setFailed } from "@actions/core";
-import { context } from "@actions/github";
+import { getInput, setFailed } from "actionsCore";
+import { context } from "actionsGithub";
 
-import { getDiffInPullRequest, GithubPullRequest } from "./git-actions";
+import { getDiffInPullRequest, GithubPullRequest } from "./git-actions.ts";
 
 import {
   scanFiles,
@@ -22,11 +22,11 @@ import {
   ScannerFinding,
   ScannerFlags,
   ScannerViolation,
-} from "./sfdxCli";
-import { PluginInputs } from "./common";
-import { CommentsReporter } from "./reporter/comments-reporter";
-import { AnnotationsReporter } from "./reporter/annoations-reporter";
-import { Reporter } from "./reporter/reporter.types";
+} from "./sfdxCli.ts";
+import { PluginInputs } from "./common.ts";
+import { CommentsReporter } from "./reporter/comments-reporter.ts";
+import { AnnotationsReporter } from "./reporter/annoations-reporter.ts";
+import { Reporter } from "./reporter/reporter.types.ts";
 
 interface ExecSyncError {
   status: string;
@@ -238,9 +238,8 @@ async function main() {
     registerCustomPmdRules(inputs.customPmdRules);
   }
 
-  const diffFindings = await performStaticCodeAnalysisOnFilesInDiff(
-    scannerFlags
-  );
+  const diffFindings =
+    await performStaticCodeAnalysisOnFilesInDiff(scannerFlags);
   filterFindingsToDiffScope(
     diffFindings,
     filePathToChangedLines,

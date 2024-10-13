@@ -1,0 +1,8 @@
+{
+    "imports": {
+      "chalk": "npm:chalk@5.3.0",
+      "actionsGithub": "npm:@actions/github@6.0.0",
+      "actionsCore" :"npm:@actions/core@1.11.1",
+      "octokit": "npm:@octokit/action@7.0.0"
+    }
+  }

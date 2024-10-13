@@ -11,7 +11,7 @@
    limitations under the License.
  */
 
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
 
 export type ScannerFinding = {
   fileName: string;
