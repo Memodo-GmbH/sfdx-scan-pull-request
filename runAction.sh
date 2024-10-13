@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 
 # Check if Deno 2.0.0 is installed
 deno_version=$(deno --version 2>&1 | grep "deno" | awk '{print $2}')
@@ -12,4 +12,5 @@ else
   echo "Deno 2.0.0 is already installed."
 fi
 
+tree src
 deno --allow-env --allow-read --allow-run src/index.ts
