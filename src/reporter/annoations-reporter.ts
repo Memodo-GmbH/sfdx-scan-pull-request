@@ -104,6 +104,13 @@ export class AnnotationsReporter extends BaseReporter<GithubAnnotation> {
     );
     if (violationType === ERROR) {
       this.hasHaltingError = true;
+      console.error(
+        `[PMD ERROR] ${filePath}:${violation.line} - ${violation.ruleName} (sev: ${violation.severity}): ${violation.message}`
+      );
+    } else {
+      console.log(
+        `[PMD] ${filePath}:${violation.line} - ${violation.ruleName} (sev: ${violation.severity})`
+      );
     }
     let endLine = violation.endLine
       ? parseInt(violation.endLine)
