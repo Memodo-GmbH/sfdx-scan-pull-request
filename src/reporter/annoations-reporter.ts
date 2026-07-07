@@ -58,26 +58,29 @@ export class AnnotationsReporter extends BaseReporter<GithubAnnotation> {
       : this.context.sha;
 
     if (this.issues) {
-      const request: GithubCheckRun = {
-        name: "sfdx-scanner",
-        head_sha: commit_id,
-        status: "completed",
-        conclusion: conclusion,
-        output: {
-          title: "Results from sfdx-scanner",
-          summary: `${this.issues.length} violations found`,
-          annotations: this.issues,
-        },
-      };
-
       this.checkHasHaltingError();
+      const chunkSize = 50;
+      for (let i = 0; i < this.issues.length; i += chunkSize) {
+        const chunk = this.issues.slice(i, i + chunkSize);
+        const request: GithubCheckRun = {
+          name: "sfdx-scanner",
+          head_sha: commit_id,
+          status: "completed",
+          conclusion: conclusion,
+          output: {
+            title: "Results from sfdx-scanner",
+            summary: `${this.issues.length} violations found`,
+            annotations: chunk,
+          },
+        };
 
-      try {
-        await this.performGithubRequest(request);
-      } catch (error) {
-        console.error(
-          "Error when creating check run: " + JSON.stringify(error, null, 2)
-        );
+        try {
+          await this.performGithubRequest(request);
+        } catch (error) {
+          console.error(
+            "Error when creating check run: " + JSON.stringify(error, null, 2)
+          );
+        }
       }
     }
   }

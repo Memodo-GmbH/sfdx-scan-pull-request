@@ -228,11 +228,26 @@ async function main() {
       );
 
   const filesToScan = getFilesToScan(filePathToChangedLines, inputs.target);
-  if (filesToScan.length === 0) {
+  const relevantExtensions = [
+    ".cls",
+    ".trigger",
+    ".page",
+    ".component",
+    ".js",
+    ".html",
+    ".cmp",
+    ".evt",
+    ".design",
+    ".css",
+  ];
+  const filteredFiles = filesToScan.filter((file) =>
+    relevantExtensions.some((ext) => file.endsWith(ext))
+  );
+  if (filteredFiles.length === 0) {
     console.log("There are no files to scan - exiting now.");
     return;
   }
-  scannerFlags.target = filesToScan.join(",");
+  scannerFlags.target = filteredFiles.join(",");
 
   if (inputs.customPmdRules) {
     registerCustomPmdRules(inputs.customPmdRules);
